@@ -1,0 +1,133 @@
+package com.healthcare.model;
+
+import com.healthcare.enums.Role;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name="patient")
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
+public class Patient extends Users {
+	
+	
+	private Long patientId;
+	
+
+	
+	private String patientAge;
+	
+	private String patientGender;
+	
+	
+
+	
+	private String patientMobile;
+
+
+
+
+	public Patient(Long userId, String username, String password, Role role, String email, Long patientId,
+			String patientAge, String patientGender, String patientMobile) {
+		super(userId, username, password, role, email);
+		this.patientId = patientId;
+		this.patientAge = patientAge;
+		this.patientGender = patientGender;
+		this.patientMobile = patientMobile;
+	}
+
+
+
+
+	public Patient(Long userId, String username, String password, Role role, String email) {
+		super(userId, username, password, role, email);
+	}
+
+
+
+
+	public Long getPatientId() {
+		return patientId;
+	}
+
+
+
+
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
+	}
+
+
+
+
+	public String getPatientAge() {
+		return patientAge;
+	}
+
+
+
+
+	public void setPatientAge(String patientAge) {
+		this.patientAge = patientAge;
+	}
+
+
+
+
+	public String getPatientGender() {
+		return patientGender;
+	}
+
+
+
+
+	public void setPatientGender(String patientGender) {
+		this.patientGender = patientGender;
+	}
+
+
+
+
+	public String getPatientMobile() {
+		return patientMobile;
+	}
+
+
+
+
+	public void setPatientMobile(String patientMobile) {
+		this.patientMobile = patientMobile;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Patient [patientId=" + patientId + ", patientAge=" + patientAge + ", patientGender=" + patientGender
+				+ ", patientMobile=" + patientMobile + "]";
+	}
+	
+	
+	
+
+	
+
+}
