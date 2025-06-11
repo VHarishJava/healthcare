@@ -1,7 +1,9 @@
 package com.healthcare.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +22,14 @@ public class AdminController {
 	private AdminService adminService;
 	
 	@PostMapping(value = "/createAdmin", produces = "application/json")
-	private ResponseEntity<Response> createAdmin(@RequestBody AdminCreationRequest admin){
-		System.out.println("hi-------------------------------------------------"+admin);
+	private ResponseEntity<Response> createAdmin(@RequestBody @Valid AdminCreationRequest admin){
+	
+
 		Admin createAdmin= adminService.createAdmin(admin);
-		System.out.println("3-----------------------------------------------------------------"+createAdmin);
-		Response response = new Response("Admin Successfully Created", 201, createAdmin);
-		System.out.println("4-----------------------------------------------------------------"+response);
+
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Admin Successfully Created", 201, createAdmin));
+	
 		
-		return ResponseEntity.status(201).body(response);
 }
 }

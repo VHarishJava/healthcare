@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.healthcare.dto.AdminCreationRequest;
+import com.healthcare.enums.Role;
 import com.healthcare.model.Admin;
 import com.healthcare.model.Users;
 import com.healthcare.repository.AdminRepository;
@@ -21,12 +22,12 @@ public class AdminService {
 	
 	
 	public Admin createAdmin(AdminCreationRequest admin) {
-		System.out.println("Service==----------------------------------------------------------------------------------------------------------------------");
 		Admin newAdmin =new Admin();
 		newAdmin.setUsername(admin.getAdminName());
 		newAdmin.setPassword(admin.getAdminPassword());
 		
-		System.out.println("2-----------------------------------------------------------------");
+		newAdmin.setRole(Role.ADMIN);
+
 		 return adminRepository.save(newAdmin);
 	}
 

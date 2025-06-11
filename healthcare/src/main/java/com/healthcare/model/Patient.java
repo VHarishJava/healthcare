@@ -63,6 +63,13 @@ public class Patient extends Users {
 
 
 
+	public Patient() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
 	public Long getPatientId() {
 		return patientId;
 	}

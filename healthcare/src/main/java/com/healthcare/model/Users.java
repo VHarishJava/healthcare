@@ -2,6 +2,7 @@ package com.healthcare.model;
 
 import com.healthcare.enums.Role;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -35,6 +36,7 @@ public class Users {
 	
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable=false)
 	private Role role;
 	
 	private String email;
