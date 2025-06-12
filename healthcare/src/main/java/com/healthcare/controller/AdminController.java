@@ -3,7 +3,7 @@ package com.healthcare.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import jakarta.validation.Valid;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +14,8 @@ import com.healthcare.dto.Response;
 import com.healthcare.model.Admin;
 import com.healthcare.service.AdminService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -21,9 +23,16 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@PostMapping(value = "/createAdmin", produces = "application/json")
 	private ResponseEntity<Response> createAdmin(@RequestBody @Valid AdminCreationRequest admin){
 	
+		
+		final String password=passwordEncoder.encode(admin.getAdminPassword());
+		
+		admin.setAdminPassword(password);
 
 		Admin createAdmin= adminService.createAdmin(admin);
 

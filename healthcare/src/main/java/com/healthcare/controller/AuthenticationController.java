@@ -8,6 +8,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +33,8 @@ public class AuthenticationController {
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity<AuthResponse> authentication(AuthRequest auth){
+	public ResponseEntity<AuthResponse> authentication(@RequestBody AuthRequest auth){
+		System.out.println(auth);
 		
 		try {
 			authenticationManager.authenticate(

@@ -14,7 +14,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtUtil {
 	
 	
-	private final String SECRETE_KEY="hari";
+	private final String SECRETE_KEY="HarishJavaDeveloperHarishJavaDeveloperHarishJaaDeveloper";
 	
 
 	public String generateToken(UserDetails userDetails) {
