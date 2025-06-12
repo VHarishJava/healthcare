@@ -21,10 +21,8 @@ public class DoctorController {
 	@Autowired
 	private DoctorService doctorService;
 	
-	@PostMapping
+	@PostMapping("/createDoctor")
 	public ResponseEntity<Response> createDoctor(@RequestBody @Valid DoctorCreationRequest doctor){
-		
-		
 		return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Successfully Created Docdor",201,doctorService.createDoctor(doctor)));
 	}
 }

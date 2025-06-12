@@ -8,4 +8,7 @@ import com.healthcare.model.Patient;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient,Long>{
 
+//	
+//	Patient findAllPatients();
+
 }

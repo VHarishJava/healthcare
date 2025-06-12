@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.healthcare.dto.AdminCreationRequest;
 import com.healthcare.dto.Response;
 import com.healthcare.model.Admin;
 import com.healthcare.service.AdminService;
+import com.healthcare.service.PatientService;
 
 import jakarta.validation.Valid;
 
@@ -26,19 +28,27 @@ public class AdminController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private PatientService patientService;
+	
 	@PostMapping(value = "/createAdmin", produces = "application/json")
 	private ResponseEntity<Response> createAdmin(@RequestBody @Valid AdminCreationRequest admin){
-	
-		
 		final String password=passwordEncoder.encode(admin.getAdminPassword());
-		
 		admin.setAdminPassword(password);
-
 		Admin createAdmin= adminService.createAdmin(admin);
-
-
-		return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Admin Successfully Created", 201, createAdmin));
-	
-		
+		return ResponseEntity.status(HttpStatus.CREATED).body(new Response("Admin Successfully Created", 201, createAdmin));		
 }
+	
+	
+	@GetMapping("/patients")
+	private ResponseEntity<Response> getAllPatients(){
+		return ResponseEntity.status(200).body(new Response("Successfully Fetched Patient Details", 200, patientService.getAllPatients()));
+	}
+	
+	
+	
+	
+	
+	
+	
 }
