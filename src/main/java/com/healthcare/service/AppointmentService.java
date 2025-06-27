@@ -51,11 +51,11 @@ public Appointment createAppointment(AppointmentDto appointmentDto, Long userId)
    
     Doctor doctor = doctorRepository.findById(appointmentDto.getDoctorId())
             .orElseThrow(() -> new RuntimeException("Doctor not found with id " + appointmentDto.getDoctorId()));
-System.out.println("*****************************************************"+doctor);
+//System.out.println("*****************************************************"+doctor);
   
     Patient patient = patientRepository.findById(userId)
             .orElseThrow(() -> new RuntimeException("Patient not found with id " + userId));
-    System.out.println("*****************************************************"+patient);
+//    System.out.println("*****************************************************"+patient);
     
     Appointment appointment = new Appointment(
         doctor,
