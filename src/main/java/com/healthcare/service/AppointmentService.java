@@ -64,8 +64,6 @@ public Appointment createAppointment(AppointmentDto appointmentDto, Long userId)
         appointmentDto.getAppointmentDate(),
         appointmentDto.getReason()
     );
-
-    
     return appointmentRepository.save(appointment);
 }
 	
@@ -83,12 +81,5 @@ public Appointment createAppointment(AppointmentDto appointmentDto, Long userId)
 		
 		return new AppointmentResponseDto(appointmentRepository.save(appointment));
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }
